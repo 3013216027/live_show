@@ -5,6 +5,7 @@
 # @Desp    :
 import json
 import requests
+from settings import DEBUG
 
 
 class Panda(object):
@@ -22,7 +23,7 @@ class Panda(object):
         return html_data['data']
 
     @staticmethod
-    def count():
+    def work():
         """
         o.o
         """
@@ -30,7 +31,8 @@ class Panda(object):
         classifications = ['lol', 'yzdr', 'overwatch', 'hwzb', 'hearthstone', 'zhuji', 'deadbydaylight', 'starve', 'dota2', 'war3', 'dnf', 'cf', 'wow', 'csgo', 'diablo3', 'heroes', 'spg', 'mc', 'ftg', 'kof97', 'jxol3', 'tymyd', 'liufang', 'hjjd', 'pokemon', 'popkart', 'foreigngames', 'starcraft', 'wy', 'music', 'shoot', 'pets', 'kingglory', 'ro', 'yys', 'mobilegame', 'fishes', 'clashroyale', 'qipai', 'boardgames', 'cartoon', 'technology', 'finance']
         sum_fans = 0
         for cla in classifications:
-            print('check PandaTV.%s' % cla)
+            if DEBUG:
+                print('check PandaTV.%s' % cla)
             total = int(Panda.fetch(url.format(cla=cla, pageno=1))['total'])
             cur = 0
             pageno = 1
@@ -47,4 +49,4 @@ class Panda(object):
 
 
 if __name__ == '__main__':
-    Panda.work()
+    print('PandaTV = %s' % Panda.work())
