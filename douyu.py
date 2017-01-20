@@ -45,15 +45,19 @@ class Douyu(object):
             page_count = int(page_count_tag[0].get('data-pagecount'))
             if DEBUG:
                 print('check Douyu.%s, page_count = %s' % (cla, page_count))
+            fans = 0
             for page in range(1, page_count + 1):
                 game_page = Douyu.fetch(Douyu.url.format(cla=cla, page=page))
                 nums = game_page('.dy-num.fr')
                 for num_text in nums:
                     num = num_text.text
                     if num.find(u'万') != -1:
-                        sum_fans += int(float(num.rstrip(u'万')) * 10000)
+                        fans += int(float(num.rstrip(u'万')) * 10000)
                     else:
-                        sum_fans += int(num)
+                        fans += int(num)
+            sum_fans += fans
+            if DEBUG:
+                print('Douyu.%s = %s' % (cla, fans))
         return sum_fans
 
 
