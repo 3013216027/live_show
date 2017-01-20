@@ -44,7 +44,7 @@ class Douyu(object):
                 continue
             page_count = int(page_count_tag[0].get('data-pagecount'))
             if DEBUG:
-                print('cla = %s, page_count = %s' % (cla, page_count))
+                print('check Douyu.%s, page_count = %s' % (cla, page_count))
             for page in range(1, page_count + 1):
                 game_page = Douyu.fetch(Douyu.url.format(cla=cla, page=page))
                 nums = game_page('.dy-num.fr')
