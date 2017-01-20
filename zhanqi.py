@@ -34,7 +34,7 @@ class Zhanqi(object):
     增加页码，尝试请求：https://www.zhanqi.tv/api/static/game.lives/135/30-2.json，得到：
     {"code":0,"message":"","data":{"cnt":2,"rooms":[]}}
     房间总数放在了cnt上，没有看到(或者是我疏漏了)总页数，所以需要自己稍微枚举一下。
-    另外，频道号采用阿拉伯数字而不是英文名，没有发现和频道名称的对应关系，所以也只好枚举频道号了，尝试枚举1-1024号= =
+    另外，频道号采用阿拉伯数字而不是英文名，没有发现和频道名称的对应关系，所以也只好枚举频道号了，尝试枚举1-512号= =
     不过这样依然会有一个问题，频道号中有一部分是无效的，比如103号，对应的是"暴雪的所有游戏"，所以我们应该先整理出所有房间号及其观众人数，
     去重后再累加= =
     """
@@ -59,7 +59,7 @@ class Zhanqi(object):
         :return: number of watchers
         """
         data = {}
-        for cla in range(1, 1025):  # [1, 1024]
+        for cla in range(1, 513):  # [1, 512]
             if DEBUG:
                 print('[Zhanqi.work]check channel %s' % cla)
             page = 1
