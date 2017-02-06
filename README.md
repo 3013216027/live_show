@@ -1,4 +1,4 @@
-# :lol:
+# :smile:
 
 - This repo just collect some scripts/tools of live shows
 
